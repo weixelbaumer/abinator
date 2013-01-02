@@ -1,0 +1,8 @@
+INSERT INTO `dashboards` VALUES ('1', 'All');
+INSERT INTO `dashboards_segments` VALUES ('1', '2', '1');
+INSERT INTO `metrics` VALUES ('1', 'Total USD purchases', 'Total USD of purchases by user', 'select\r\n  segment.userid,\r\n  sum(p.purchase) as metric\r\nfrom (%segment%) segment\r\nleft join purchases p on segment.userid = p.user_id\r\ngroup by segment.userid');
+INSERT INTO `metrics_users` VALUES ('1', '1', '1', '244'), ('2', '1', '2', '295'), ('3', '1', '3', '83'), ('4', '1', '4', '732'), ('5', '1', '5', '953'), ('6', '1', '6', '91'), ('7', '1', '7', '92'), ('8', '1', '8', '221');
+INSERT INTO `purchases` VALUES ('1', '234', '1'), ('2', '213', '2'), ('3', '83', '3'), ('4', '732', '4'), ('5', '953', '5'), ('6', '10', '1'), ('7', '82', '2'), ('8', '91', '6'), ('9', '92', '7'), ('10', '221', '8');
+INSERT INTO `segments` VALUES ('1', 'Old users', 'Users older than 50', 'select id as userid from users where age > 50', null), ('2', 'Young users', 'Users less than 50 years old', 'select id as userid from users where age<50', '1');
+INSERT INTO `segments_users` VALUES ('1', '1', '3'), ('2', '1', '5'), ('3', '2', '1'), ('4', '2', '2'), ('5', '2', '4'), ('6', '2', '6'), ('7', '2', '7'), ('8', '2', '8'), ('9', '2', '9'), ('10', '2', '10');
+INSERT INTO `users` VALUES ('1', '23'), ('2', '34'), ('3', '64'), ('4', '12'), ('5', '90'), ('6', '44'), ('7', '22'), ('8', '42'), ('9', '35'), ('10', '31');
