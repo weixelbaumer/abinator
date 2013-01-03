@@ -73,3 +73,17 @@ i.e. the SQL must return (userid)
 * Edit app/Model/User.php
 Set useTable to the table containing the 'users' (customers, visitors or whatever the object is you are measuring performance on)
 Set primaryKey to the column containing a unique id of the 'user'
+
+## Notes
+
+* For performance ABinator only updates metrics when a metric is changed! You can force an update by navigating to http://host/abinator/metrics/assign
+* ABinator can use query-caching but it is disabled by default. You can enable it globally by setting $cache to true in app/Model/AppModel.php (don't) or enable it for a specific query by setting it right before the query, e.g.
+
+```
+public function getSegmentMetrics(){
+    $this->cache = true;
+    $segmentMetrics = $this->query("...");
+}
+```
+
+Per default it caches queries for 24 hours. The value can be set in app/Model/AppModel.php
