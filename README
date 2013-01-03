@@ -1,7 +1,7 @@
 ABinator is a flexible and powerful user behavior analysis tool.
 
 * Define user segments and metrics in plain SQL.
-* Compare the user segments against each other in terms of the metrics defined, complete with statistical confidence.
+* Compare the user segments against each other in terms of the metrics defined, with a Welch's t test (p-value)
 * Provides dashboards to give a visual overview of the performance of the segments
 
 It is used internally at Tradeshift to answer various hypotheses about the user population as well as for the analysis of AB experiments.
