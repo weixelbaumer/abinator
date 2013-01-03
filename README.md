@@ -27,7 +27,7 @@ It is a very rough around the edges power tool. Use at your own risk.
 * Edit app/Config/database.php to point to this database
 * Go to <webroot>/app and run  "../lib/Cake/Console/cake schema create"
 * Run app/Config/Schema/values.sql to insert some example data
-* Go to http://<host>/abinator and click View
+* Go to http://host/abinator and click View
 * You should see that 'Young users' are 46% worse than 'Old users' in terms of Total USD purchases, with a very low statistical confidence (p=0.577) which is reflected in the low opacity of the text
 
 ## Nomenclature:
