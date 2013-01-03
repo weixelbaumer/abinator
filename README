@@ -5,15 +5,18 @@ ABinator is a flexible and powerful user behavior analysis tool.
 * Provides dashboards to give a visual overview of the performance of the segments
 
 It is used internally at Tradeshift to answer various hypotheses about the user population as well as for the analysis of AB experiments.
+
 It is a very rough around the edges power tool. Use at your own risk.
 
 REQUIREMENTS:
+
  * Linux, Apache, MySql server
  * PECL stats package (http://pecl.php.net/package/stats)
  * Knowledge of SQL
  * Access to database with BI data (incl. some concept of users with a unique id)
 
 INSTALLATION (incl. example data):
+
  * Install PECL stats package
  * Download and extract to <webroot>/abinator (or similar)
  * Enable .htaccess in apache for <webroot>/abinator
@@ -25,26 +28,29 @@ INSTALLATION (incl. example data):
  * You should see that 'Young users' are 46% worse than 'Old users' in terms of Total USD purchases, with a very low statistical confidence (p=0.577) which is reflected in the low opacity of the text
 
 Nomenclature:
+
  * Segment: A group of users, e.g. 'users from x country', 'users with a public profile', etc. Can have a baseline segment defined, which is another segment to be compared to.
  * Metric: A measure of performance (per user), e.g. 'total USD transacted', 'number of invites sent', etc. Bigger is better.
  * Dashboard: A dashboard displays the performance of a set of segments against their baselines with regard to all metrics defined.
 
 USAGE:
- * Create a metric. The metric SQL must follow the template:
 
+ * Create a metric. The metric SQL must follow the template:
+```
  select
    segment.userid,
    <something numeric> as metric
  from (%segment%) segment
  <join to BI tables, etc. to get metric>
  group by segment.userid
+```
 
  i.e. the SQL must select from the magic %segment% table (only contains a userid column) and return (userid, metric) grouped by segment.userid
 
  * Create a segment. The segment SQL must follow the template:
-
+```
  select <something> as userid ... <some user filter, etc.>
-
+```
  i.e. the SQL must return (userid)
 
  * Create a segment as above and choose the former segment as baseline
@@ -52,6 +58,7 @@ USAGE:
  * Add more metrics and segments
 
 MOVING TO REAL DATA:
+
  * So far we've assumed you were testing it out locally. By now you should have a pretty good idea of how it works.
  * ABinator requires that the abinator tables are in the same database as the BI data (for now).
  * Either move the abinator tables to your BI DB (and change the database.php to reflect it) or copy the BI data to the abinator database periodically.
