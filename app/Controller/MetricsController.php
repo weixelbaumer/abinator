@@ -20,7 +20,7 @@ class MetricsController extends AppController {
 
 	public function assign(){
 		$this->Metric->assign();
-		//$this->redirect(array('action' => 'index'));
+		$this->redirect(array('action' => 'index'));
 	}
 
 /**
@@ -47,7 +47,7 @@ class MetricsController extends AppController {
 			$this->Metric->create();
 			if ($this->Metric->save($this->request->data)) {
 				$this->Session->setFlash(__('The metric has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'assign'));
 			} else {
 				$this->Session->setFlash(__('The metric could not be saved. Please, try again.'));
 			}
@@ -68,7 +68,7 @@ class MetricsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Metric->save($this->request->data)) {
 				$this->Session->setFlash(__('The metric has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'assign'));
 			} else {
 				$this->Session->setFlash(__('The metric could not be saved. Please, try again.'));
 			}
@@ -93,7 +93,7 @@ class MetricsController extends AppController {
 		}
 		if ($this->Metric->delete()) {
 			$this->Session->setFlash(__('Metric deleted'));
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('action' => 'assign'));
 		}
 		$this->Session->setFlash(__('Metric was not deleted'));
 		$this->redirect(array('action' => 'index'));
