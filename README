@@ -39,7 +39,7 @@ USAGE:
  <join to BI tables, etc. to get metric>
  group by segment.userid
 
- i.e. the SQL must select from the magic %segment% table and return (userid, metric) grouped by segment.userid
+ i.e. the SQL must select from the magic %segment% table (only contains a userid column) and return (userid, metric) grouped by segment.userid
 
  * Create a segment. The segment SQL must follow the template:
 
