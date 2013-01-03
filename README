@@ -34,12 +34,12 @@ USAGE:
 
  select
    segment.userid,
-   <something (numeric)> as metric
+   <something numeric> as metric
  from (%segment%) segment
- <join to BI tables, etc. to get the metric value>
+ <join to BI tables, etc. to get metric>
  group by segment.userid
 
- i.e. the SQL must be joined on the magic %segment% table by userid and return (userid, metric) grouped by segment.userid
+ i.e. the SQL must select from the magic %segment% table and return (userid, metric) grouped by segment.userid
 
  * Create a segment. The segment SQL must follow the template:
 
