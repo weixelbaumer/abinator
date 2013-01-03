@@ -6,3 +6,4 @@
 .DS_Store
 tags
 .idea
+*.iml
