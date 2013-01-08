@@ -87,3 +87,59 @@ public function getSegmentMetrics(){
 ```
 
 Per default it caches queries for 24 hours. The value can be set in app/Model/AppModel.php
+
+## Example installation (ubuntu)
+
+everything as root:
+```
+$ pecl install stats
+$ service apache2 restart
+$ git clone git@github.com:Tradeshift/abinator.git /var/www/abinator
+```
+
+Put into /etc/apache2/sites-available/abinator:
+<VirtualHost *:8081>
+ DocumentRoot /var/www/abinator
+ <Directory /var/www/t@github.com:Tradeshift/abinator.gitgit@github.com:Tradeshift/abinator.gitabinator>
+  DirectoryIndex index.php index.html
+  AllowOverride All
+  Order allow,deny
+  Allow from all
+ </Directory>
+</VirtualHost>
+
+```
+$ a2ensite abinator
+```
+
+Create mysql user:
+
+```
+CREATE USER 'abinator' IDENTIFIED BY 'ab12de';
+CREATE DATABASE abinator;
+GRANT ALL ON abinator.* TO 'abinator'@'localhost' IDENTIFIED BY 'ab12de';
+```
+
+Put this into app/Config/database.php:
+<?php
+class DATABASE_CONFIG {
+    public $default = array(
+        'datasource'  => 'Database/Mysql',
+        'persistent'  => false,
+        'host'        => 'localhost',
+        'login'       => 'abinator',
+        'password'    => 'ab12de',
+        'database'    => 'abinator',
+        'prefix'      => ''
+    );
+}
+Create some temp dirs
+
+```
+$ mkdir -p tmp/logs tmp/cache/persistent tmp/cache/models
+$ chown www-data.www-data tmp -R (make writeable by apache)
+```
+
+‘cake create schema’ will say it drops table on an empty database
+
+$ mysql -u abinator -p abinator < Config/Schema/values.sql
