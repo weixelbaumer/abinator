@@ -98,15 +98,17 @@ $ git clone git@github.com:Tradeshift/abinator.git /var/www/abinator
 ```
 
 Put into /etc/apache2/sites-available/abinator:
+```
 <VirtualHost *:8081>
  DocumentRoot /var/www/abinator
- <Directory /var/www/t@github.com:Tradeshift/abinator.gitgit@github.com:Tradeshift/abinator.gitabinator>
+ <Directory /var/www/abinator>
   DirectoryIndex index.php index.html
   AllowOverride All
   Order allow,deny
   Allow from all
  </Directory>
 </VirtualHost>
+```
 
 ```
 $ a2ensite abinator
