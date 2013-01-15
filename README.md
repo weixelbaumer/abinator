@@ -140,6 +140,6 @@ $ mkdir -p tmp/logs tmp/cache/persistent tmp/cache/models
 $ chown www-data.www-data tmp -R (make writeable by apache)
 ```
 
-‘cake create schema’ will say it drops table on an empty database
+‘cake schema create’ will say it drops table on an empty database
 
 $ mysql -u abinator -p abinator < Config/Schema/values.sql
