@@ -91,6 +91,7 @@ Per default it caches queries for 24 hours. The value can be set in app/Model/Ap
 ## Example installation (ubuntu)
 
 everything as root:
+
 ```
 $ pecl install stats
 $ service apache2 restart
@@ -98,6 +99,7 @@ $ git clone git@github.com:Tradeshift/abinator.git /var/www/abinator
 ```
 
 Put into /etc/apache2/sites-available/abinator:
+
 ```
 <VirtualHost *:8081>
  DocumentRoot /var/www/abinator
@@ -123,6 +125,8 @@ GRANT ALL ON abinator.* TO 'abinator'@'localhost' IDENTIFIED BY 'ab12de';
 ```
 
 Put this into app/Config/database.php:
+
+```
 <?php
 class DATABASE_CONFIG {
     public $default = array(
@@ -135,6 +139,8 @@ class DATABASE_CONFIG {
         'prefix'      => ''
     );
 }
+```
+
 Create some temp dirs
 
 ```
@@ -142,6 +148,10 @@ $ mkdir -p tmp/logs tmp/cache/persistent tmp/cache/models
 $ chown www-data.www-data tmp -R (make writeable by apache)
 ```
 
-‘cake schema create’ will say it drops table on an empty database
+Install database (will warn about dropping tables)
 
+```
+$ cd app
+$ ../lib/Cake/Console/cake schema create 
 $ mysql -u abinator -p abinator < Config/Schema/values.sql
+```
