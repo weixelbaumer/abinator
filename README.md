@@ -13,7 +13,7 @@ It is a very rough around the edges power tool. Use at your own risk.
 
 ## Requirements:
 
-* Linux, Apache, MySql server
+* Linux, Apache, PHP, SQL
 * PECL stats package (http://pecl.php.net/package/stats)
 * Knowledge of SQL
 * Access to database with BI data (incl. some concept of users with a unique id)
